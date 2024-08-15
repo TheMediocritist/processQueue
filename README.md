@@ -100,20 +100,22 @@ end
 myQueue:setOperation(customOperation)
 ```
 
-### `queue:push(item)`
+### `queue:push(item or table)`
 
 **Description**:  
-Adds an item to the end of the queue.
+Adds an item or table of items to the end of the queue.
 
 **Parameters**:
 - `item (any)`: The item to be added to the queue.
+- Or `table`: The table of items (any) to be added to the queue.
 
 **Returns**:  
 None.
 
-**Example**:
+**Examples**:
 ```lua
 myQueue:push(42)
+myQueue:push({42, 60, 12})
 ```
 
 ### `queue:pop()`
