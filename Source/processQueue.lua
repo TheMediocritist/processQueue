@@ -60,6 +60,14 @@ local function processUntil(self, timeLimit)
     end
 end
 
+local function contains(self, item)
+    for i = self.first, self.last do
+        if self[i] == item then
+            return true
+        end
+    end
+    return false
+end
 
 local methods = {
     setOperation = setOperation,
@@ -67,6 +75,7 @@ local methods = {
     pop = pop,
     count = count,
     empty = empty,
+    contains = contains,
     contents = contents,
     processAll = processAll,
     processNumber = processNumber,

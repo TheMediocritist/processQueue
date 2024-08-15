@@ -112,6 +112,26 @@ if myQueue:empty() then
 end
 ```
 
+### `queue:contains(item)`
+
+**Description**:  
+Checks if the queue contains the item
+
+**Parameters**:  
+- `item (any)`: The item to search for in the queue.
+
+**Returns**:  
+`boolean`: `true` if the item exists in the queue, `false` otherwise.
+
+**Example**:
+```lua
+if myQueue:contains('rabbit') then
+    print('We do not need another rabbit!')
+else
+    myQueue:push('rabbit')
+end
+```
+
 ### `queue:contents()`
 
 **Description**:  
