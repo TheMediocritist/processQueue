@@ -40,7 +40,7 @@ None.
 **Example**:
 ```lua
 local function customOperation(item)
-    print("Processing item:", item)
+    -- do something useful to or with item here
 end
 
 myQueue:setOperation(customOperation)
