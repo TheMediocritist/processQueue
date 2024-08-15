@@ -1,4 +1,4 @@
-# `pdqueue` Documentation
+# `processQueue` Documentation
 
 The `processQueue` module provides a simple and efficient queue implementation for managing and processing items in a First-In-First-Out (FIFO) manner. This module is designed for use with Playdate but can be adapted for other Lua environments.
 
