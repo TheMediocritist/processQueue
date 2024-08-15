@@ -61,7 +61,7 @@ local function processUntil(self, timeLimit)
 end
 
 local function contains(self, item)
-    for i = self.first, self.last do
+    for i = self.first, self.last-1 do
         if self[i] == item then
             return true
         end
