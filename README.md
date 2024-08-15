@@ -2,6 +2,8 @@
 
 The `processQueue` module provides a simple and efficient queue implementation for managing and processing items on a First-In-First-Out basis. This module is designed for use with Playdate but can be adapted for other Lua environments.
 
+Items are processed from oldest to newest. Inefficient table operations are avoided (except iteration for :exists...).
+
 ## **Example Implementation**
 
 ```lua
@@ -29,7 +31,7 @@ end
 
 -- Add another 25 items to the queue (as a list)
 local myList = {}
-for i = 50, 75 do
+for i = 51, 75 do
     myList[#myList+1] = i
 end
 myQueue:push(myList)
@@ -226,7 +228,7 @@ myQueue:processAll()
 ### `queue:processItems(n)`
 
 **Description**:  
-Processes up to `n` items in the queue by applying the custom operation to each item.
+Processes up to `n` items in the queue from oldest to newest by applying the custom operation to each item.
 
 **Parameters**:
 - `n (number)`: The maximum number of items to process.
@@ -242,7 +244,7 @@ myQueue:processItems(3)  -- Process up to 3 items
 ### `queue:processUntil(timeLimit)`
 
 **Description**:  
-Processes items in the queue until a specified time limit is reached. The time limit is measured in milliseconds.
+Processes items in the queue from oldest to newest until a specified time limit is reached. The time limit is measured in milliseconds.
 
 **Parameters**:
 - `timeLimit (number)`: The maximum time (in milliseconds) to process items.

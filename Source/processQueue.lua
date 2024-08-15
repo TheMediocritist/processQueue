@@ -10,8 +10,8 @@ end
 
 local function push(self, x)
     if type(x) == 'table' then
-        for i in pairs(x) do
-            self[self.last] = x[i]
+        for i, v in pairs(x) do
+            self[self.last] = v
             self.last += 1
         end
     else
@@ -38,7 +38,7 @@ end
 
 local function contents(self)
     local contents = {}
-    for i = self.first, self.last-1 do
+    for i = self.first, self.last - 1 do
         contents[#contents+1] = self[i]
     end
     return contents
@@ -68,7 +68,7 @@ local function processUntil(self, timeLimit)
 end
 
 local function contains(self, item)
-    for i = self.first, self.last-1 do
+    for i = self.first, self.last - 1 do
         if self[i] == item then
             return true
         end

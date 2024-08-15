@@ -1,3 +1,4 @@
+import "Corelibs/object"
 import 'processQueue'
 
 -- Define the function to be performed on queue items
@@ -22,7 +23,7 @@ end
 
 -- Add another 25 items to the queue (as a list)
 local myList = {}
-for i = 50, 75 do
+for i = 51, 75 do
     myList[#myList+1] = i
 end
 myQueue:push(myList)
