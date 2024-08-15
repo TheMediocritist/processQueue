@@ -32,7 +32,7 @@ end
 local function contents(self)
     local contents = {}
     for i = self.first, self.last-1 do
-        contents[i-self.first+1] = self[i]
+        contents[#contents+1] = self[i]
     end
     return contents
 end
