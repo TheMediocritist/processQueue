@@ -209,7 +209,7 @@ import 'processQueue'
 local function customOperation(item)
     print("Processing item:", item)
     
-    -- For demonstration purposes only - this delays for 1ms to demonstrate testQueue:processUntil(timeLimit)
+    -- For demonstration purposes only, delay for 1ms to demonstrate testQueue:processUntil(timeLimit)
     local wait = 1
     local t = playdate.getCurrentTimeMilliseconds()
     while playdate.getCurrentTimeMilliseconds() < (t + wait) do
@@ -217,23 +217,29 @@ local function customOperation(item)
     end
 end
 
-local testQueue = processQueue:new(customOperation)
+local myQueue = processQueue:new(customOperation)
 
 -- Add items to the queue
 for i = 1, 50 do
-    testQueue:push(i)
+    myQueue:push(i)
 end
 
 function playdate.update()
-
-    -- Process 2 items
-    testQueue:processNumber(5)
+    if myQueue:contains('rabbit') then
+        print('We do not need another rabbit!')
+    else
+        print('Adding rabbit to the queue')
+        myQueue:push('rabbit')
+    end
+    
+    -- Process 5 items
+    myQueue:processNumber(5)
     
     -- Process additional items for 5 milliseconds
-    testQueue:processUntil(5)
+    myQueue:processUntil(5)
     
     -- Check remaining items
-    print("Items left in queue:", testQueue:count())
+    print("Items left in queue:", myQueue:count())
 
 end
 ```
