@@ -1,7 +1,7 @@
-name=pdqueue
+name=processQueue
 author=TheMediocritist
-description=Demonstration for pdqueue
-bundleID=com.themediocritist.pdqueue
+description=Demonstration for processQueue
+bundleID=com.themediocritist.processqueue
 version=1.0
 buildNumber=100
 imagePath=SystemAssets
