@@ -189,7 +189,7 @@ import 'processQueue'
 local function customOperation(item)
     print("Processing item:", item)
     
-    -- For demonstration purposes only - this delays for 1ms to demonstrate testQueue:processUntil(2)
+    -- For demonstration purposes only - this delays for 1ms to demonstrate testQueue:processUntil(timeLimit)
     local wait = 1
     local t = playdate.getCurrentTimeMilliseconds()
     while playdate.getCurrentTimeMilliseconds() < (t + wait) do
@@ -209,8 +209,8 @@ function playdate.update()
     -- Process 2 items
     testQueue:processNumber(5)
     
-    -- Process additional items for 2 milliseconds
-    testQueue:processUntil(2)
+    -- Process additional items for 5 milliseconds
+    testQueue:processUntil(5)
     
     -- Check remaining items
     print("Items left in queue:", testQueue:count())
