@@ -1,0 +1,9 @@
+name=pdqueue
+author=TheMediocritist
+description=Demonstration for pdqueue
+bundleID=com.themediocritist.pdqueue
+version=1.0
+buildNumber=100
+imagePath=SystemAssets
+pdxversion=20500
+buildtime=776996007
