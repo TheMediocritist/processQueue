@@ -2,6 +2,53 @@
 
 The `processQueue` module provides a simple and efficient queue implementation for managing and processing items on a First-In-First-Out basis. This module is designed for use with Playdate but can be adapted for other Lua environments.
 
+## **Example Implementation**
+
+```lua
+import 'processQueue'
+
+-- Define the function to be performed on queue items
+local function customOperation(item)
+    print("Processing item:", item)
+    
+    -- For demonstration purposes only, delay for 1ms to demonstrate testQueue:processUntil(timeLimit)
+    local wait = 1
+    local t = playdate.getCurrentTimeMilliseconds()
+    while playdate.getCurrentTimeMilliseconds() < (t + wait) do
+        -- do absolutely nothing
+    end
+end
+
+-- Create the queue
+local myQueue = processQueue:new(customOperation)
+
+-- Add 50 items to the queue
+for i = 1, 50 do
+    myQueue:push(i)
+end
+
+function playdate.update()
+    
+    -- Add a new item to the queue if it doesn't already exist
+    if myQueue:contains('rabbit') then
+        print('We do not need another rabbit!')
+    else
+        print('Adding rabbit to the queue')
+        myQueue:push('rabbit')
+    end
+    
+    -- Process 5 items
+    myQueue:processNumber(5)
+    
+    -- Process additional items for 5 milliseconds
+    myQueue:processUntil(5)
+    
+    -- Check how many items remain in the queue
+    print("Items left in queue:", myQueue:count())
+
+end
+```
+
 ## **Creating a Queue**
 
 ### `processQueue:new(customOperation)`
@@ -200,50 +247,3 @@ myQueue:processUntil(5)  -- Process for up to 5 milliseconds
 ```
 
 ---
-
-## **Example Implementation**
-
-```lua
-import 'processQueue'
-
--- Define the function to be performed on queue items
-local function customOperation(item)
-    print("Processing item:", item)
-    
-    -- For demonstration purposes only, delay for 1ms to demonstrate testQueue:processUntil(timeLimit)
-    local wait = 1
-    local t = playdate.getCurrentTimeMilliseconds()
-    while playdate.getCurrentTimeMilliseconds() < (t + wait) do
-        -- do absolutely nothing
-    end
-end
-
--- Create the queue
-local myQueue = processQueue:new(customOperation)
-
--- Add 50 items to the queue
-for i = 1, 50 do
-    myQueue:push(i)
-end
-
-function playdate.update()
-    
-    -- Add a new item to the queue if it doesn't already exist
-    if myQueue:contains('rabbit') then
-        print('We do not need another rabbit!')
-    else
-        print('Adding rabbit to the queue')
-        myQueue:push('rabbit')
-    end
-    
-    -- Process 5 items
-    myQueue:processNumber(5)
-    
-    -- Process additional items for 5 milliseconds
-    myQueue:processUntil(5)
-    
-    -- Check how many items remain in the queue
-    print("Items left in queue:", myQueue:count())
-
-end
-```
