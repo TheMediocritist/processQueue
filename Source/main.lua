@@ -15,10 +15,17 @@ end
 -- Create the queue
 local myQueue = processQueue:new(customOperation)
 
--- Add 50 items to the queue
-for i = 1, 50 do
+-- Add 25 items to the queue (individually)
+for i = 1, 25 do
     myQueue:push(i)
 end
+
+-- Add another 25 items to the queue (as a list)
+local myList = {}
+for i = 50, 75 do
+    myList[#myList+1] = i
+end
+myQueue:push(myList)
 
 function playdate.update()
     
@@ -31,7 +38,7 @@ function playdate.update()
     end
     
     -- Process 5 items
-    myQueue:processNumber(5)
+    myQueue:processItems(5)
     
     -- Process additional items for 5 milliseconds
     myQueue:processUntil(5)

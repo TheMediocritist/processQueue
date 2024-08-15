@@ -9,8 +9,15 @@ local function setOperation(self, customOperation)
 end
 
 local function push(self, x)
-    self[self.last] = x
-    self.last += 1
+    if type(x) == 'table' then
+        for i in pairs(x) do
+            self[self.last] = x[i]
+            self.last += 1
+        end
+    else
+        self[self.last] = x
+        self.last += 1
+    end
 end
 
 local function pop(self)
@@ -44,7 +51,7 @@ local function processAll(self)
     end
 end
 
-local function processNumber(self, n)  
+local function processItems(self, n)  
     while not self:empty() and n > 0 do
         local item = self:pop()
         self.customOperation(item)
@@ -78,7 +85,7 @@ local methods = {
     contains = contains,
     contents = contents,
     processAll = processAll,
-    processNumber = processNumber,
+    processItems = processItems,
     processUntil = processUntil
 }
 
