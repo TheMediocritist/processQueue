@@ -1,6 +1,6 @@
 # `processQueue` Documentation
 
-The `processQueue` module provides a simple and efficient queue implementation for managing and processing items in a First-In-First-Out (FIFO) manner. This module is designed for use with Playdate but can be adapted for other Lua environments.
+The `processQueue` module provides a simple and efficient queue implementation for managing and processing items on a First-In-First-Out basis. This module is designed for use with Playdate but can be adapted for other Lua environments.
 
 ## **Creating a Queue**
 
@@ -180,7 +180,7 @@ None.
 
 **Example**:
 ```lua
-myQueue:processNumber(3)
+myQueue:processNumber(3)  -- Process up to 3 items
 ```
 
 ### `queue:processUntil(timeLimit)`
@@ -196,16 +196,17 @@ None.
 
 **Example**:
 ```lua
-myQueue:processUntil(5000)  -- Process for up to 5 seconds
+myQueue:processUntil(5)  -- Process for up to 5 milliseconds
 ```
 
 ---
 
-## **Usage Example**
+## **Example Implementation**
 
 ```lua
 import 'processQueue'
 
+-- Define the function to be performed on queue items
 local function customOperation(item)
     print("Processing item:", item)
     
@@ -217,14 +218,17 @@ local function customOperation(item)
     end
 end
 
+-- Create the queue
 local myQueue = processQueue:new(customOperation)
 
--- Add items to the queue
+-- Add 50 items to the queue
 for i = 1, 50 do
     myQueue:push(i)
 end
 
 function playdate.update()
+    
+    -- Add a new item to the queue if it doesn't already exist
     if myQueue:contains('rabbit') then
         print('We do not need another rabbit!')
     else
@@ -238,7 +242,7 @@ function playdate.update()
     -- Process additional items for 5 milliseconds
     myQueue:processUntil(5)
     
-    -- Check remaining items
+    -- Check how many items remain in the queue
     print("Items left in queue:", myQueue:count())
 
 end

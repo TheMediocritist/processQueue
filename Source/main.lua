@@ -1,5 +1,6 @@
 import 'processQueue'
 
+-- Define the function to be performed on queue items
 local function customOperation(item)
     print("Processing item:", item)
     
@@ -11,14 +12,17 @@ local function customOperation(item)
     end
 end
 
+-- Create the queue
 local myQueue = processQueue:new(customOperation)
 
--- Add items to the queue
+-- Add 50 items to the queue
 for i = 1, 50 do
     myQueue:push(i)
 end
 
 function playdate.update()
+    
+    -- Add a new item to the queue if it doesn't already exist
     if myQueue:contains('rabbit') then
         print('We do not need another rabbit!')
     else
@@ -32,7 +36,7 @@ function playdate.update()
     -- Process additional items for 5 milliseconds
     myQueue:processUntil(5)
     
-    -- Check remaining items
+    -- Check how many items remain in the queue
     print("Items left in queue:", myQueue:count())
 
 end
